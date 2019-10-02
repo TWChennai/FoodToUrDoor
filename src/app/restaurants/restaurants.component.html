@@ -6,36 +6,13 @@
 </div>
 
 <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <img src='assets/1.png' alt='image'>
-        <span>Restaurant One</span>
-    </a>
+    <ng-container *ngIf="restaurants">
+        <ng-container  *ngFor="let restaurant of restaurants.data">
+            <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial" >
+                <img src='assets/1.png' alt='image'>
+                <div> {{restaurant.first_name}} {{restaurant.last_name}}</div>
+                <span> {{restaurant.email}} </span>
+            </a>
+        </ng-container>
+    </ng-container>
 </div>
