@@ -1,0 +1,42 @@
+
+  .toolbar {
+    height: 60px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace
+  }
+
+  .logo {
+    font-size: xx-large;
+  }
+
+  .links  {
+    font-size: large;
+    justify-self: right;
+    margin: 10px;   
+  }
+
+  div.linksHolder{
+      flex: 1;
+      float: right;
+      margin: 60px;
+      text-align: right;
+  }
+
+  svg#rocket {
+    width: 80px;
+    left: -10px;
+    top: -24px;
+  }
+
+  a {
+    padding: 1.5em;
+    text-transform: uppercase;
+    font-size: .8em;
+    text-decoration: none;
+    color: white;
+}
+
