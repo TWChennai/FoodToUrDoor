@@ -14,9 +14,11 @@ a.container{
         color: white;
 }
 
-section {
-    width: 80%;
+section{
+    width: 90%;
     margin: 0 auto;
-    padding: 2em;
 }
 
+h2{
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace
+}
