@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from './_helpers/must-match.validator';
+import { MustMatch } from '../_helpers/must-match.validator';
+import { DataserviceService } from '../dataservice.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,8 +12,9 @@ import { MustMatch } from './_helpers/must-match.validator';
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
+    success = false;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private dataService: DataserviceService) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -37,7 +39,10 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+        const name = this.f.firstName.value + ' ' + this.f.lastName.value;
+        const mobileNumber = this.f.mobileNumber.value;
+        const email = this.f.email.value;
+        const password = this.f.password.value;
+        this.success = this.dataService.signUp(name, email, password, mobileNumber );
     }
 }
