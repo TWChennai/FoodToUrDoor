@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', component: RestaurantsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'restaurant/1', component: RestaurantComponent}
+  {path: 'restaurant/:id', component: RestaurantComponent}
 ];
 
 @NgModule({

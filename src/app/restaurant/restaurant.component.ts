@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../dataservice.service';
 import { RestaurantModel } from '../models/RestaurantModel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant',
@@ -10,11 +11,15 @@ import { RestaurantModel } from '../models/RestaurantModel';
 export class RestaurantComponent implements OnInit {
 
   restaurant: RestaurantModel;
+  restaurandId: string;
 
-  constructor(private dataserviceService: DataserviceService) { }
+  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) { 
+    this.route.params.subscribe( params => this.restaurandId = params['id']);
+    console.log('restaurant Id' + this.restaurandId);
+  }
 
   ngOnInit() {
-    this.dataserviceService.getRestaurantsMatching('1').subscribe(r => this.restaurant = r);
+    this.dataserviceService.getRestaurantsMatching(this.restaurandId).subscribe(r => this.restaurant = r);
   }
 
   getCartInfo(): string {
