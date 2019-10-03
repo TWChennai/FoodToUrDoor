@@ -1,0 +1,32 @@
+input {
+    width: 500px;
+    height: 40px;
+    font-size: 16px;    
+}
+
+.signupform{
+    width: 100%;
+    margin-top: 50px;
+    float: right;
+    border: 1px;
+}
+
+.form-group{
+    margin: 15px;
+}
+
+.invalid-feedback{
+    margin: 5px;
+    color: red;
+}
+
+.submit{
+    border-radius: 5px;
+    float: right;
+    border: 0;
+    width: 120px;
+    height:50px;
+    font-size: 1.2em;
+    color: white;   
+    background: #1976d2;
+}
