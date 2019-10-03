@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../dataservice.service';
+import { RestaurantModel } from '../models/RestaurantModel';
 
 @Component({
   selector: 'app-restaurants',
@@ -8,19 +9,15 @@ import { DataserviceService } from '../dataservice.service';
 })
 export class RestaurantsComponent implements OnInit {
 
-  restaurants: Object;
+  restaurants: RestaurantModel[];
 
   constructor(private dataservice: DataserviceService) { }
 
   ngOnInit() {
-    this.dataservice.getRestaurants().subscribe(data => {
-      this.restaurants = data;
-      console.log(this.restaurants);
-    });
+    this.dataservice.getRestaurants().subscribe(r => this.restaurants = r);
   }
 
   isEmptyObject(obj) {
     return (obj && (Object.keys(obj).length === 0));
   }
-
 }

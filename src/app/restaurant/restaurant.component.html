@@ -1,0 +1,12 @@
+<p>restaurant works!</p>
+<div *ngIf='restaurant'>
+<p>{{restaurant.name}}</p>
+<div *ngIf="restaurant?.items">
+<div *ngFor="let item of restaurant.items">
+        <span>{{item.itemName}}</span>
+        <span>{{item.quantity}}</span>
+        <span>{{item.price}}</span>
+</div>
+</div>
+</div>
+<p>restaurant works!</p>
