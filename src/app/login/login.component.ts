@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -33,9 +34,12 @@ export class LoginComponent implements OnInit {
         return;
     }
 
-    this.success = this.dataService.signIn(
+    this.dataService.signIn(
         this.loginForm.controls.userName.value,
-        this.loginForm.controls.password.value);
+        this.loginForm.controls.password.value)
+          .then(success => this.success = success)
+          .catch(() => this.success = false)
+        
 
 
 }
