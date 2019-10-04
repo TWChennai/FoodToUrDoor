@@ -1,26 +1,35 @@
 
-<div *ngIf='restaurant'>
-    <p>{{restaurant.name}}</p>
-        <div *ngIf="restaurant?.items">
-        <div *ngFor="let item of restaurant.items">
+<div  *ngIf='!isLoggedInAlready'>
+    <div>
+        <h2> Please Login to proceed </h2>
+        <a href="/login"> login </a>
+    </div>
+</div>
 
-            <table>
-                <tr>
-                    <td>
-                        <span>{{item.itemName}}</span>
-                    </td>
-                    <td>
-                        <span>{{item.quantity}}</span>
-                    </td>
-                    <td>
-                        <span>{{item.price}}</span>
-                    </td>
-                    <td>
-                        <button (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> add to cart</button>
-                    </td>
+<div  *ngIf='isLoggedInAlready'>
+    <div *ngIf='restaurant'>
+        <p>{{restaurant.name}}</p>
+            <div *ngIf="restaurant?.items">
+            <div *ngFor="let item of restaurant.items">
 
-                </tr>
-            </table>            
+                <table>
+                    <tr>
+                        <td>
+                            <span>{{item.itemName}}</span>
+                        </td>
+                        <td>
+                            <span>{{item.quantity}}</span>
+                        </td>
+                        <td>
+                            <span>{{item.price}}</span>
+                        </td>
+                        <td>
+                            <button (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> add to cart</button>
+                        </td>
+
+                    </tr>
+                </table>            
+            </div>
         </div>
     </div>
 </div>

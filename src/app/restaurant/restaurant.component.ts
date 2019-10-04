@@ -12,6 +12,7 @@ export class RestaurantComponent implements OnInit {
 
   restaurant: RestaurantModel;
   restaurandId: string;
+  isLoggedInAlready: boolean;
 
   constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
@@ -21,6 +22,7 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.dataserviceService.getRestaurantsMatching(this.restaurandId).subscribe(r => this.restaurant = r);
+    this.isLoggedInAlready=this.isLoggedIn();
   }
 
   getCartInfo(): string {
@@ -38,6 +40,13 @@ export class RestaurantComponent implements OnInit {
       console.log('adding = ' + 'restaurant:' + restaurantId + ';');
       localStorage.setItem('cart-items', 'restaurant:' + restaurantId + ':' + restaurantName + ';');
     }
+  }
+
+  isLoggedIn()
+  {
+    if(sessionStorage.getItem("authToken")!=null)
+      return true;
+    return false;  
   }
 
   isItemAlreadyPresentInCart(itemId: string) {
