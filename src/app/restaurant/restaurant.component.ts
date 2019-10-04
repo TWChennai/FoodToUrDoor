@@ -13,7 +13,7 @@ export class RestaurantComponent implements OnInit {
   restaurant: RestaurantModel;
   restaurandId: string;
 
-  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) { 
+  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
     console.log('restaurant Id' + this.restaurandId);
   }
@@ -61,7 +61,6 @@ export class RestaurantComponent implements OnInit {
     localStorage.setItem('cart-items', cart.join(';'));
   }
 
-
   addToCart(restaurantId: string, restaurantName: string, itemId: string, itemName: string, itemPrice: string) {
     this.clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId, restaurantName);
     if ( this.isItemAlreadyPresentInCart(itemId) ) {
@@ -71,5 +70,5 @@ export class RestaurantComponent implements OnInit {
       localStorage.setItem('cart-items', cart + 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':1;' );
     }
   }
-// restaurant:1:test1;item:1:Dosa:23.2:1;
+  // restaurant:1:test1;item:1:Dosa:23.2:1;
 }

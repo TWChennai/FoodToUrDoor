@@ -23,6 +23,8 @@ export class CartComponent implements OnInit {
     this.order.restaurantName = restaurantInfo[1];
     console.log(this.order.restaurantId);
     this.order.orderItems = [];
+    let subTotal = 0;
+    this.order.deliveryFee = '50';
     for ( let i = 1; i < cart.length - 1; i++ ) {
         let itemDetails = cart[i].split(':');
         let item = new OrderItem();
@@ -31,8 +33,10 @@ export class CartComponent implements OnInit {
         item.qty = itemDetails[4];
         item.price = String(Number(itemDetails[3]) * Number(item.qty));
         this.order.orderItems.push(item);
-        console.log('item = ' + item.itemId);
+        subTotal = subTotal + Number(item.price);
     }
+    this.order.tax = String((subTotal * 5) / 100);
+    this.order.totalValue = String(subTotal + Number(this.order.tax) + Number(this.order.deliveryFee));
   }
 
 }
