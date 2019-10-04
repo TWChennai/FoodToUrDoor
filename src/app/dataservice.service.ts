@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//import { ServerRequest } from 'http';
 import { catchError, map, filter } from 'rxjs/operators';
 import { RestaurantModel } from './models/RestaurantModel';
 import { Observable, throwError } from 'rxjs';
