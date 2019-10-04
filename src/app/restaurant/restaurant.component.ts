@@ -26,7 +26,7 @@ export class RestaurantComponent implements OnInit {
     return localStorage.getItem('cart-items');
   }
 
-  clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId: string) {
+  clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId: string, restaurantName: string) {
     let cart = this.getCartInfo();
     if ( cart != null && !cart.startsWith('restaurant:' + restaurantId )) {
       console.log('cart is already empty');
@@ -35,7 +35,7 @@ export class RestaurantComponent implements OnInit {
     cart = this.getCartInfo();
     if ( cart == null) {
       console.log('adding = ' + 'restaurant:' + restaurantId + ';');
-      localStorage.setItem('cart-items', 'restaurant:' + restaurantId + ';');
+      localStorage.setItem('cart-items', 'restaurant:' + restaurantId + ':' + restaurantName + ';');
     }
   }
 
@@ -49,27 +49,27 @@ export class RestaurantComponent implements OnInit {
     return false;
   }
 
-  incrementItemInCartByOne(itemId: string) {
+  incrementItemInCartByOne(itemId: string, itemName: string, itemPrice: string) {
     let cart = this.getCartInfo().split(';');
     const restaurant = cart[0];
     for ( let i = 0; i < cart.length; i++ ) {
       if ( cart[i].startsWith('item:' + itemId)) {
-        const itemCount = cart[i].replace('item:' + itemId + ':', '');
-        cart[i] = 'item:' + itemId + ':' + (Number(itemCount) + 1 );
+        const itemCount = cart[i].split(':')[4];
+        cart[i] = 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':' + (Number(itemCount) + 1 );
       }
     }
     localStorage.setItem('cart-items', cart.join(';'));
   }
 
 
-  addToCart(restaurantId: string, itemId: string) {
-    this.clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId);
+  addToCart(restaurantId: string, restaurantName: string, itemId: string, itemName: string, itemPrice: string) {
+    this.clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId, restaurantName);
     if ( this.isItemAlreadyPresentInCart(itemId) ) {
-      this.incrementItemInCartByOne(itemId);
+      this.incrementItemInCartByOne(itemId, itemName, itemPrice);
     } else {
       const cart = this.getCartInfo();
-      localStorage.setItem('cart-items', cart + 'item:' + itemId + ':1;' );
+      localStorage.setItem('cart-items', cart + 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':1;' );
     }
   }
-// restaurant:1;item:1:1;
+// restaurant:1:test1;item:1:Dosa:23.2:1;
 }

@@ -16,7 +16,7 @@
                         <span>{{item.price}}</span>
                     </td>
                     <td>
-                        <button (click)="addToCart(restaurant.hotelId, item.id)"> add to cart</button>
+                        <button (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> add to cart</button>
                     </td>
 
                 </tr>
