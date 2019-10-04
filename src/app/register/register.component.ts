@@ -39,10 +39,11 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        const name = this.f.firstName.value + ' ' + this.f.lastName.value;
-        const mobileNumber = this.f.mobileNumber.value;
+        const firstname = this.f.firstName.value;
+        const lastname = this.f.lastName.value;
         const email = this.f.email.value;
+        const mobileNumber = this.f.mobileNumber.value;
         const password = this.f.password.value;
-        this.success = this.dataService.signUp(name, email, password, mobileNumber );
+        this.success = this.dataService.signUp(firstname, lastname,email, password, mobileNumber );
     }
 }

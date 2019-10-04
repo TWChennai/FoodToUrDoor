@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ServerRequest } from 'http';
+//import { ServerRequest } from 'http';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -15,22 +15,28 @@ export class DataserviceService {
   }
 
   signIn(username: string, password: string): boolean {
-    const payload = username + ':' + password;
+    const payload = {
+      'username': username,
+      'password': password
+    };
     this.httpClient.post('http://localhost:8102/login', payload).subscribe(res => {
       // get the token and write it to localstore or cookie 	
-        return true;
-    },
-    err => {
-      console.log(err);
+     
       return false;
-    });
-    return false;
+    })
+  
+    // err => {
+    //   console.log(err);
+    //   return false;
+    
+    return true;
   }
 
-  signUp(email: string, username: string, password: string, phone: string): boolean {
+  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): boolean {
     const payload = {
+      'firstname': firstname,
+      'lastname': lastname,
       'email': email,
-      'username': username,
       'password': password,
       'phone': phone
     };
@@ -41,7 +47,7 @@ export class DataserviceService {
     err => {
       console.log(err);
       return false;
-    });
+    })
     return false;
   }
 }
