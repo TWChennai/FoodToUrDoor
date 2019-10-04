@@ -40,8 +40,7 @@ export class DataserviceService {
 
     return new Promise((resolve, reject) => {
       this.httpClient.post('http://localhost:8102/login', payload).subscribe(res => {
-      //get the token and write it to localstore or cookie 	
-      resolve(res.token);
+      resolve(res);
     });
     });
   }

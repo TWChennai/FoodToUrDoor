@@ -15,7 +15,8 @@ export class RestaurantComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
-    console.log('restaurant Id' + this.restaurandId);
+    // console.log('restaurant Id' + this.restaurandId);
+
   }
 
   ngOnInit() {
@@ -70,5 +71,5 @@ export class RestaurantComponent implements OnInit {
       localStorage.setItem('cart-items', cart + 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':1;' );
     }
   }
-  // restaurant:1:test1;item:1:Dosa:23.2:1;
+
 }

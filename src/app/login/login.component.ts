@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
     this.dataService.signIn(
         this.loginForm.controls.userName.value,
         this.loginForm.controls.password.value)
-          .then(token => {
-            sessionStorage.setItem("authToken",token);
+          .then(res => {
+            sessionStorage.setItem("authToken",res.token);
+            sessionStorage.setItem("username",res.username);
             this.router.navigate(['/']);
             this.success = true
           })
