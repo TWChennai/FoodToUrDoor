@@ -7,11 +7,10 @@
 
 <div class="card-container">
     <ng-container *ngIf="restaurants">
-        <ng-container  *ngFor="let restaurant of restaurants.data">
-            <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial" >
+        <ng-container  *ngFor="let restaurant of restaurants">
+            <a class="card" href="http://localhost:4200/restaurant/1" >
                 <img src='assets/1.png' alt='image'>
-                <div> {{restaurant.first_name}} {{restaurant.last_name}}</div>
-                <span> {{restaurant.email}} </span>
+                <div> {{restaurant.name}} </div>
             </a>
         </ng-container>
     </ng-container>
