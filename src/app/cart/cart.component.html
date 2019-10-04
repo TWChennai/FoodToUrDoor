@@ -1,0 +1,11 @@
+
+<div>
+    <span>
+        You are ordering from {{order.restaurantId}}
+    </span>
+</div>
+<div *ngFor="let item of order.orderItems">
+    <span> {{item.itemId}}</span>
+    <span> {{item.itemName}}</span>
+    <span> {{item.qty}}</span>
+</div>
