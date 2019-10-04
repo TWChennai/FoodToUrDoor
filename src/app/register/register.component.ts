@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
     submitted = false;
     success = false;
 
-    constructor(private formBuilder: FormBuilder, private dataService: DataserviceService) { }
+    constructor(private formBuilder: FormBuilder, private dataService: DataserviceService,private router: Router) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -44,6 +45,11 @@ export class RegisterComponent implements OnInit {
         const email = this.f.email.value;
         const mobileNumber = this.f.mobileNumber.value;
         const password = this.f.password.value;
-        this.success = this.dataService.signUp(firstname, lastname,email, password, mobileNumber );
+        this.success = this.dataService.signUp(firstname, lastname,email, password, mobileNumber )
+        .then(success => {
+            // this.router.navigate(['/login']);
+            this.success = true
+          })
+          .catch(() => this.success = false);
     }
 }

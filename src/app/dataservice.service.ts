@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, filter } from 'rxjs/operators';
 import { RestaurantModel } from './models/RestaurantModel';
 import { Observable, throwError } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +41,12 @@ export class DataserviceService {
     return new Promise((resolve, reject) => {
       this.httpClient.post('http://localhost:8102/login', payload).subscribe(res => {
       //get the token and write it to localstore or cookie 	
-      resolve({});
+      resolve(res.token);
     });
     });
   }
 
-  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): boolean {
+  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): Object {
     const payload = {
       'firstname': firstname,
       'lastname': lastname,
@@ -53,14 +54,18 @@ export class DataserviceService {
       'password': password,
       'phone': phone
     };
-    this.httpClient.post('http://localhost:8102/createUser', payload).subscribe(res => {
-      // get the token and write it to localstore or cookie
-        return true;
-    },
-    err => {
-      console.log(err);
-      return false;
-    })
-    return false;
+    return new Promise((resolve, reject) => {
+      var httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'text/plain;charset=UTF-8'
+        }),
+        responseType: 'text'
+      };
+      this.httpClient.post('http://localhost:8102/createUser', payload).subscribe(res => {
+        console.log("hi")
+        resolve();
+    });
+    });
   }
+
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
 import { first } from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataserviceService) { }
+  constructor(private formBuilder: FormBuilder, private dataService: DataserviceService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -37,7 +38,11 @@ export class LoginComponent implements OnInit {
     this.dataService.signIn(
         this.loginForm.controls.userName.value,
         this.loginForm.controls.password.value)
-          .then(success => this.success = success)
+          .then(token => {
+            sessionStorage.setItem("authToken",token);
+            this.router.navigate(['/']);
+            this.success = true
+          })
           .catch(() => this.success = false)
         
 
