@@ -1,30 +1,31 @@
 
-<div *ngIf="submitted && !success">
-    <span class="invalid-feedback"> Login Failed Try again!!</span>
-</div>
-
 <div class="signinform">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-        
-            <input type="text" placeholder="User Name" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" value='User Name' />
-            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-                <div *ngIf="f.userName.errors.required">User Name is required</div>
-            </div>
+            <label> Username : </label>
+            <input type="text" placeholder="" formControlName="userName" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" value='User Name' />
+            <span *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                <span *ngIf="f.userName.errors.required">User Name is required</span>
+            </span>
         </div>
 
         <div class="form-group">
-    
-            <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-            </div>
+            <label> Password : </label>
+            <input type="password" placeholder="" formControlName="password" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <span *ngIf="f.password.errors.required">Password is required</span>
+                <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
+            </span>
         </div>
-
+        <div class="form-group">
         <button class="submit">Signin</button>
+        <span *ngIf="submitted && !success">
+                <span class="invalid-feedback"> Login Failed Try again!!</span>
+        </span>  
+        </div>
     </form>
 </div>
+  
 
 <div class="loginform" *ngIf="success">x
     <h2> Logged in Succesfully </h2>
