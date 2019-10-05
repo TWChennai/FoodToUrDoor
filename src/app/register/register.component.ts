@@ -46,12 +46,11 @@ export class RegisterComponent implements OnInit {
         const email = this.f.email.value;
         const mobileNumber = this.f.mobileNumber.value;
         const password = this.f.password.value;
-        this.success = this.dataService.signUp(firstname, lastname,email, password, mobileNumber )
+        this.dataService.signUp(firstname, lastname, email, password, mobileNumber )
         .then(res => {
-            res.token;
-            this.register=true;
-            this.success = true
+            this.register = true;
+            this.success = true;
           })
-        .catch(() => this.success = false)
+        .catch(err => { this.success = false; });
     }
 }

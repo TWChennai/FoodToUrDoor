@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
-import { first } from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 @Component({
@@ -29,25 +27,21 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
         return;
     }
-
     this.dataService.signIn(
         this.loginForm.controls.userName.value,
         this.loginForm.controls.password.value)
           .then(res => {
-            sessionStorage.setItem("authToken",res.token);
-            sessionStorage.setItem("username",res.username);
+            sessionStorage.setItem('authToken', res['token']);
+            sessionStorage.setItem('username', res['username']);
             this.router.navigate(['/']);
-            this.success = true
+            this.success = true;
           })
-          .catch(() => this.success = false)
-
-
+          .catch( error =>  {
+            this.success = false;
+          });
 }
-
-
 }

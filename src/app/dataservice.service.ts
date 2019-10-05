@@ -32,7 +32,7 @@ export class DataserviceService {
 
 
 
-  signIn(username: string, password: string): Object {
+  signIn(username: string, password: string): Promise<Object> {
     const payload = {
       'username': username,
       'password': password
@@ -45,7 +45,7 @@ export class DataserviceService {
     });
   }
 
-  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): Object {
+  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): Promise<Object> {
     const payload = {
       'firstname': firstname,
       'lastname': lastname,
