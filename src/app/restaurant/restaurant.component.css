@@ -5,6 +5,10 @@
     font-size: 40px;
   }
 
+  .name{
+    text-transform: uppercase;
+  }
+
   .item-img {
     height: 250px;
     width: 300px;
