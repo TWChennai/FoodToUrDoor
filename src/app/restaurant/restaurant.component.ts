@@ -16,7 +16,7 @@ export class RestaurantComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
-    // console.log('restaurant Id' + this.restaurandId);
+    console.log('restaurant Id' + this.restaurandId);
 
   }
 
@@ -32,12 +32,12 @@ export class RestaurantComponent implements OnInit {
   clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId: string, restaurantName: string) {
     let cart = this.getCartInfo();
     if ( cart != null && !cart.startsWith('restaurant:' + restaurantId )) {
-      console.log('cart is already empty');
+      // console.log('cart is already empty');
       localStorage.clear();
     }
     cart = this.getCartInfo();
     if ( cart == null) {
-      console.log('adding = ' + 'restaurant:' + restaurantId + ';');
+      // console.log('adding = ' + 'restaurant:' + restaurantId + ';');
       localStorage.setItem('cart-items', 'restaurant:' + restaurantId + ':' + restaurantName + ';');
     }
   }
