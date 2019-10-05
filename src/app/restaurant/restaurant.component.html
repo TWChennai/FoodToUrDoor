@@ -1,29 +1,31 @@
 
-<div  *ngIf='!isLoggedInAlready'>
-    <div>
-        <h2> Please Login to proceed </h2>
-        <a href="/login"> login </a>
-    </div>
-</div>
-
 <div  *ngIf='isLoggedInAlready'>
     <div *ngIf='restaurant'>
-        <p>{{restaurant.name}}</p>
+        <div class='title'>
+            <span> Select items from </span>
+            <span class="name">{{restaurant.name}}</span>
+        </div>
             <div *ngIf="restaurant?.items">
-            <div *ngFor="let item of restaurant.items">
-
-                <table>
+            <div *ngFor="let item of restaurant.items" class='item-list'>
+                <span class="item-list">
+                    <img class='item-img' src='assets/items.jpg' alt="items">
+                </span> 
+                <table class="item-list">
                     <tr>
-                        <td>
+                        <td class="item-details">
                             <span>{{item.itemName}}</span>
                         </td>
-                        <td>
-                            <span>{{item.quantity}}</span>
-                        </td>
-                        <td>
+                    </tr>    
+                            <!-- <td>
+                                <span>{{item.quantity}}</span>
+                            </td> -->
+                    <tr>      
+                        <td class="item-details">
+                            <span>₹ </span>
                             <span>{{item.price}}</span>
                         </td>
-                        <td>
+                    <tr>
+                        <td class="item-details">
                             <button (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> add to cart</button>
                         </td>
 

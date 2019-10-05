@@ -55,7 +55,15 @@
     </form>
 </div>
 
-<div class="signupform" *ngIf="success">
+<div class="registerForm" *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
+<div class="form-group">
+<span >
+    <span class="invalid-feedback"> Email already exist!!</span>
+</span>
+</div>
+</div>
+
+<div class="registerForm" *ngIf="submitted && success">
     <h2> You are registered please Login!! </h2>
     <a href="/login"> login </a>
 </div>

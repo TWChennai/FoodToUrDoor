@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../dataservice.service';
 import { RestaurantModel } from '../models/RestaurantModel';
-import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-restaurants',

@@ -54,15 +54,8 @@ export class DataserviceService {
       'phone': phone
     };
     return new Promise((resolve, reject) => {
-      var httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'text/plain;charset=UTF-8'
-        }),
-        responseType: 'text'
-      };
       this.httpClient.post('http://localhost:8102/createUser', payload).subscribe(res => {
-        console.log("hi")
-        resolve();
+        resolve(res);
     });
     });
   }
