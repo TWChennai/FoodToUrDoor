@@ -1,14 +1,39 @@
 
 <div>
-    <span>
+    <h2>
         You are ordering from {{order.restaurantName}}
-    </span>
+    </h2>
 </div>
-<div *ngFor="let item of order.orderItems">
-    <span> {{item.itemName}}</span>
-    <span> {{item.qty}}</span>
-    <span> {{item.price}}</span>
-</div>
-<div> {{order.tax}} </div>
-<div> {{order.deliveryFee}} </div>
-<div> {{order.totalValue}} </div>
+<table class="table">
+    <tbody>
+        <tr>
+            <td><h5> Items you added to card </h5></td>
+        </tr>
+        <tr *ngFor="let item of order.orderItems">
+            <td class='column'><b> {{item.itemName}}</b></td>
+            <td class='column'> {{item.qty}}</td>
+            <td class='last-column'> {{item.price}}</td>
+        </tr>
+        <tr>
+            <td><h5> Other charges </h5></td>
+        </tr>
+            <tr> 
+                <td> <b> Tax </b></td>
+                <td></td>
+                <td> {{order.tax}} </td>
+            </tr>
+            <tr> 
+                <td> <b>Delivery Fee</b> </td>
+                <td></td>
+                <td> {{order.deliveryFee}} </td>
+            </tr>  
+            <tr>
+                <td><h6> </h6></td>
+            </tr>            
+            <tr> 
+                <td> <b>Total</b> </td>
+                <td></td>
+                <td> {{order.totalValue}} </td>
+            </tr>                        
+    </tbody>
+    </table>
