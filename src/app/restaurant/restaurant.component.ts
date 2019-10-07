@@ -13,6 +13,7 @@ export class RestaurantComponent implements OnInit {
   restaurant: RestaurantModel;
   restaurandId: string;
   isLoggedInAlready: boolean;
+  isAlertVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
@@ -75,9 +76,11 @@ export class RestaurantComponent implements OnInit {
     this.clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId, restaurantName);
     if ( this.isItemAlreadyPresentInCart(itemId) ) {
       this.incrementItemInCartByOne(itemId, itemName, itemPrice);
+      alert('Item already present');  
     } else {
       const cart = this.getCartInfo();
       localStorage.setItem('cart-items', cart + 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':1;' );
+      alert('Item added to cart!');  
     }
   }
 
