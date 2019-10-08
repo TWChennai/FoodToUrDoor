@@ -5,65 +5,106 @@
 
 <div class="signupform" *ngIf="!success">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-        
-            <input type="text" placeholder="First name" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" value='First Name' />
-            <span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                <span *ngIf="f.firstName.errors.required">First Name is required</span>
-            </span>
-        </div>
-        <div class="form-group">
-    
-            <input type="text" placeholder="Last name" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-            <span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                <span *ngIf="f.lastName.errors.required">Last Name is required</span>
-            </span>
-        </div>
-              
-        <div class="form-group">
-  
-            <input type="text" placeholder="Email (Username)" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-            <span *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <span *ngIf="f.email.errors.required">Email is required</span>
-                <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
-            </span>
-        </div>
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="registerForm" *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
+                        <div class="form-group">
+                            <span >
+                                <span class="invalid-feedback"> Registration Failed! /n Email already exist!!</span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 
-        <div class="form-group">
-        
-            <input type="text" placeholder="Mobile number" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
-            <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
-                <span *ngIf="f.mobileNumber.errors.required">Mobile Number is required</span>
-                <span *ngIf="f.mobileNumber.errors.maxlength">Mobile Number must be 10 characters</span>
-            </span>
-        </div>  
-        
-        <div class="form-group">
-   
-            <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <span *ngIf="f.password.errors.required">Password is required</span>
-                <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
-            </span>
-        </div>
-        <div class="form-group">
-  
-            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-            <span *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                <span *ngIf="f.confirmPassword.errors.required">Confirm Password is required</span>
-                <span *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</span>
-            </span>
-        </div>
-        <div class="form-group">
-            <button class="submit">Register</button>
-        </div>
+            <tr>
+                <td><label>First name :</label></td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" value='First Name' />
+                        <span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <span *ngIf="f.firstName.errors.required">First Name is required</span>
+                        </span>
+                    </div>
+                </td>       
+            </tr>
+
+            <tr>
+                <td><label>Last name :</label></td>
+                <td>    
+                    <div class="form-group">
+                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <span *ngIf="f.lastName.errors.required">Last Name is required</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Email (Username) :</label>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <span *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <span *ngIf="f.email.errors.required">Email is required</span>
+                            <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Mobile number :</label></td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                        <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                            <span *ngIf="f.mobileNumber.errors.required">Mobile Number is required</span>
+                            <span *ngIf="f.mobileNumber.errors.maxlength">Mobile Number must be 10 characters</span>
+                        </span>
+                    </div>  
+                </td>
+            </tr>
+
+            <tr>
+                <td> <label>Password :</label> </td>
+                <td>
+                    <div class="form-group">
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <span *ngIf="f.password.errors.required">Password is required</span>
+                            <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td> <label>Confirm Password :</label> </td>
+                <td>
+                    <div class="form-group">
+                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                        <span *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                            <span *ngIf="f.confirmPassword.errors.required">Confirm Password is required</span>
+                            <span *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <div class="form-group">
+                        <button class="submit">Register</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
-</div>
-
-<div class="registerForm" *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
-<div class="form-group">
-<span >
-    <span class="invalid-feedback"> Registration Failed! /n Email already exist!!</span>
-</span>
-</div>
 </div>

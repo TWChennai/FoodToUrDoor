@@ -1,27 +1,49 @@
 
 <div class="signinform">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label> Username : </label>
-            <input type="text" placeholder="" formControlName="userName" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" value='User Name' />
-            <span *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-                <span *ngIf="f.userName.errors.required">User Name is required</span>
-            </span>
-        </div>
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <div *ngIf="submitted && !success" class="form-group">
+                            <span class="invalid-feedback"> Login Failed Try again!!</span>
+                    </div>  
+                </td>
+            </tr>
+            <tr>
+                <td> <label> Username : </label> </td>
+                <td>
+                    <div class="form-group">
 
-        <div class="form-group">
-            <label> Password : </label>
-            <input type="password" placeholder="" formControlName="password" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <span *ngIf="f.password.errors.required">Password is required</span>
-                <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
-            </span>
-        </div>
-        <div class="form-group">
-        <button class="submit">Signin</button>
-        <span *ngIf="submitted && !success">
-                <span class="invalid-feedback"> Login Failed Try again!!</span>
-        </span>  
-        </div>
+                        <input type="text" placeholder="" formControlName="userName" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" value='User Name' />
+                        <span *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                            <span *ngIf="f.userName.errors.required">User Name is required</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label> Password : </label></td>
+                <td>
+                    <div class="form-group">
+
+                    <input type="password" placeholder="" formControlName="password" class="form-control textbox" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <span *ngIf="f.password.errors.required">Password is required</span>
+                        <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
+                    </span>
+                  </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <div class="form-group">
+                    <button class="submit">Signin</button>
+                    </div>
+                </td>
+            </tr>
+        </table>    
     </form>
 </div>
