@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../dataservice.service';
 import { RestaurantModel } from '../models/RestaurantModel';
-import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant',
@@ -15,13 +15,16 @@ export class RestaurantComponent implements OnInit {
   isLoggedInAlready: boolean;
   isAlertVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
+  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService, private router: Router) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
   }
 
   ngOnInit() {
     this.dataserviceService.getRestaurantsMatching(this.restaurandId).subscribe(r => this.restaurant = r);
     this.isLoggedInAlready = this.isLoggedIn();
+    if ( !this.isLoggedInAlready ) {
+      this.router.navigate(['/login']);
+    }
   }
 
   getCartInfo(): string {
