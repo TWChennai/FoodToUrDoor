@@ -17,13 +17,11 @@ export class RestaurantComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
-    console.log('restaurant Id' + this.restaurandId);
-
   }
 
   ngOnInit() {
     this.dataserviceService.getRestaurantsMatching(this.restaurandId).subscribe(r => this.restaurant = r);
-    this.isLoggedInAlready=this.isLoggedIn();
+    this.isLoggedInAlready = this.isLoggedIn();
   }
 
   getCartInfo(): string {
@@ -33,30 +31,27 @@ export class RestaurantComponent implements OnInit {
   clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId: string, restaurantName: string) {
     let cart = this.getCartInfo();
     if ( cart != null && !cart.startsWith('restaurant:' + restaurantId )) {
-      // console.log('cart is already empty');
+      alert('Clearing Items from');
       localStorage.clear();
     }
     cart = this.getCartInfo();
     if ( cart == null) {
-      // console.log('adding = ' + 'restaurant:' + restaurantId + ';');
       localStorage.setItem('cart-items', 'restaurant:' + restaurantId + ':' + restaurantName + ';');
     }
   }
 
-  isLoggedIn()
-  {
-    if(sessionStorage.getItem("authToken")!=null)
+  isLoggedIn() {
+    if ( sessionStorage.getItem('authToken') != null ) {
       return true;
-    return false;  
+    }
+    return false;
   }
 
   isItemAlreadyPresentInCart(itemId: string) {
     const cart = this.getCartInfo();
     if ( cart.includes('item:' + itemId + ':') ) {
-      console.log('item already present in cart');
       return true;
     }
-    console.log('item not present in cart');
     return false;
   }
 
@@ -76,12 +71,11 @@ export class RestaurantComponent implements OnInit {
     this.clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId, restaurantName);
     if ( this.isItemAlreadyPresentInCart(itemId) ) {
       this.incrementItemInCartByOne(itemId, itemName, itemPrice);
-      alert('Item already present');  
+      alert('Item added to cart');
     } else {
       const cart = this.getCartInfo();
       localStorage.setItem('cart-items', cart + 'item:' + itemId + ':' + itemName + ':' + itemPrice + ':1;' );
-      alert('Item added to cart!');  
+      alert('Item added to cart!');
     }
   }
-
 }

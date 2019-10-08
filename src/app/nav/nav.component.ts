@@ -12,29 +12,33 @@ export class NavComponent implements OnInit {
   token: boolean;
   username: String;
 
-  constructor(private router: Router) {  
+  constructor(private router: Router) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.ngOnInit();
-      } 
+      }
     });
   }
 
   ngOnInit() {
-    this.token=this.getToken();
-    this.username=this.getUsername();
+    this.token = this.getToken();
+    this.username = this.getUsername();
   }
 
-  getToken()
-  {
-    if(sessionStorage.getItem("authToken")!=null)
-      return true;
-    return false;  
+  getToken() {
+    if ( sessionStorage.getItem('authToken') != null ) {
+     return true;
+    }
+    return false;
   }
 
-  getUsername()
-  {
-    return sessionStorage.getItem("username");
+  getUsername() {
+    return sessionStorage.getItem('username');
   }
 
+  logout() {
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

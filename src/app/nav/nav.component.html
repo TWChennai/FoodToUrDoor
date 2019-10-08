@@ -14,11 +14,13 @@
         <span class = "logo">{{ title }}</span>
     </div>
     <div class="linksHolder">
+    <span class="links" *ngIf="token"> Hi {{username}}! </span>
     <span class="links"> <a routerLink="/"> Home </a> </span>
     <span class="links" *ngIf="token"> <a routerLink="/cart"> cart </a> </span>
     <span class="links" *ngIf="!token"> <a routerLink="/login"> Login </a> </span>
     <span class="links" *ngIf="!token"> <a routerLink="/register"> Register </a> </span>
-    <span class="links" *ngIf="token"> Hi {{username}}! </span>
+    <span class="links" *ngIf="token"> <a routerLink="/" (click)=logout()> Logout </a> </span>
+    
     </div> 
 </div>
 </header>
