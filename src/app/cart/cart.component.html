@@ -1,39 +1,43 @@
-
-<div>
-    <h2>
-        You are ordering from {{order.restaurantName}}
-    </h2>
-</div>
-<table class="table">
-    <tbody>
-        <tr>
-            <td><h4> Items you added to card </h4></td>
-        </tr>
-        <tr *ngFor="let item of order.orderItems">
-            <td class='column'><b> {{item.itemName}}</b></td>
-            <td class='column'> {{item.qty}}</td>
-            <td class='last-column'> {{item.price}}</td>
-        </tr>
-        <tr>
-            <td><h4> Other charges </h4></td>
-        </tr>
-            <tr> 
-                <td> <b> Tax </b></td>
-                <td></td>
-                <td> {{order.tax}} </td>
-            </tr>
-            <tr> 
-                <td> <b>Delivery Fee</b> </td>
-                <td></td>
-                <td> {{order.deliveryFee}} </td>
-            </tr>  
+<div *ngIf="order">
+    <div>
+        <h2>
+            You are ordering from {{order.restaurantName}}
+        </h2>
+    </div>
+    <table class="table">
+        <tbody>
             <tr>
-                <td><h6> </h6></td>
-            </tr>            
-            <tr> 
-                <td> <b>Total</b> </td>
-                <td></td>
-                <td> {{order.totalValue}} </td>
-            </tr>                        
-    </tbody>
+                <td><h4> Items you added to card </h4></td>
+            </tr>
+            <tr *ngFor="let item of order.orderItems">
+                <td class='column'><b> {{item.itemName}}</b></td>
+                <td class='column'> {{item.qty}}</td>
+                <td class='last-column'> {{item.price}}</td>
+            </tr>
+            <tr>
+                <td><h4> Other charges </h4></td>
+            </tr>
+                <tr> 
+                    <td> <b> Tax </b></td>
+                    <td></td>
+                    <td> {{order.tax}} </td>
+                </tr>
+                <tr> 
+                    <td> <b>Delivery Fee</b> </td>
+                    <td></td>
+                    <td> {{order.deliveryFee}} </td>
+                </tr>  
+                <tr>
+                    <td><h6> </h6></td>
+                </tr>            
+                <tr> 
+                    <td> <b>Total</b> </td>
+                    <td></td>
+                    <td> {{order.totalValue}} </td>
+                </tr>                        
+        </tbody>
     </table>
+</div>
+<div *ngIf="!order">
+    <h2> No Items in Cart! </h2>
+</div>    

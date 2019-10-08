@@ -23,19 +23,17 @@
                             <span>{{item.itemName}}</span>
                         </td>
                     </tr>    
-                            <!-- <td>
-                                <span>{{item.quantity}}</span>
-                            </td> -->
                     <tr>      
                         <td class="item-details">
                             <span>₹ </span>
                             <span>{{item.price}}</span>
                         </td>
-                    <tr>
                         <td class="item-details">
-                            <button class="grab" (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> add to cart</button>
-                        </td>
-
+                                <button class="grab" (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> + </button>
+                            </td>
+                            <td class="item-details">
+                                <button class="grab" (click)="removeFromCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> - </button>
+                            </td>
                     </tr>
                 </table>            
             </div>
