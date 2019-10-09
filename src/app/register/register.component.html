@@ -45,7 +45,7 @@
 
             <tr>
                 <td>
-                    <label>Email (Username) :</label>
+                    <label>Email (Username) <span class='red'>*</span> :</label>
                 </td>
                 <td>
                     <div class="form-group">
@@ -72,10 +72,13 @@
             </tr>
 
             <tr>
-                <td> <label>Password :</label> </td>
+                <td>
+                    <label>Password <span class='red'>*</span> :</label>
+                </td>
                 <td>
                     <div class="form-group">
                         <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div>Password should contain atleast one of the following character -  !@#%&*</div>
                         <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <span *ngIf="f.password.errors.required">Password is required</span>
                             <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
@@ -85,7 +88,7 @@
             </tr>
 
             <tr>
-                <td> <label>Confirm Password :</label> </td>
+                <td> <label>Confirm Password <span class='red'>*</span> :</label> </td>
                 <td>
                     <div class="form-group">
                         <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />

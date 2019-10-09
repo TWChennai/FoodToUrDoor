@@ -41,7 +41,6 @@ export class RestaurantComponent implements OnInit {
 
   clearCartAndAddRestaurantIfRestaurantIsDifferent(restaurantId: string, restaurantName: string) {
     if ( !this.doesCartContainsitemsFromRestaurant( restaurantId )) {
-      alert('Clearing Items from');
       localStorage.clear();
     }
     let cart = this.getCartInfo();
@@ -107,9 +106,9 @@ export class RestaurantComponent implements OnInit {
     console.log('restaurant ID: ' + restaurantId)
     console.log('in remove item from cart:' + this.doesCartContainsitemsFromRestaurant( restaurantId ));
     if ( this.doesCartContainsitemsFromRestaurant( restaurantId )) {
-      console.log("cart contains items from restaurant");
+      console.log('cart contains items from restaurant');
       if ( this.isItemAlreadyPresentInCart(itemId) ) {
-        console.log("cart contains item to -");
+        console.log('cart contains item to -');
         this.decrementItemInCartByOne(itemId, itemName, itemPrice);
         alert('Item added to cart');
       } else {
@@ -120,6 +119,5 @@ export class RestaurantComponent implements OnInit {
         alert('Item added to cart!');
       }
     }
-    // if item is not present 
   }
 }
