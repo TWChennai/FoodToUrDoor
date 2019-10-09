@@ -40,8 +40,8 @@ export class CartComponent implements OnInit {
           this.order.orderItems.push(item);
           subTotal = subTotal + Number(item.price);
       }
-      this.order.tax = String((subTotal * 5) / 100);
-      this.order.totalValue = String(subTotal + Number(this.order.tax) + Number(this.order.deliveryFee));
+      this.order.tax = '5';
+      this.order.totalValue = String(subTotal + Number(this.order.tax) + Number(this.order.deliveryFee) - 1);
     }
   }
 

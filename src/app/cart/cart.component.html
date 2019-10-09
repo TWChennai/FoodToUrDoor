@@ -17,27 +17,27 @@
             <tr>
                 <td><h4> Other charges </h4></td>
             </tr>
-                <tr> 
-                    <td> <b> Tax </b></td>
+                <tr>
+                    <td> <b> Tax (5% for total) </b></td>
                     <td></td>
                     <td> {{order.tax}} </td>
                 </tr>
-                <tr> 
+                <tr>
                     <td> <b>Delivery Fee</b> </td>
                     <td></td>
                     <td> {{order.deliveryFee}} </td>
-                </tr>  
+                </tr>
                 <tr>
                     <td><h6> </h6></td>
-                </tr>            
-                <tr> 
+                </tr>
+                <tr>
                     <td> <b>Total</b> </td>
                     <td></td>
                     <td> {{order.totalValue}} </td>
-                </tr>                        
+                </tr>
         </tbody>
     </table>
 </div>
 <div *ngIf="!order">
     <h2> No Items in Cart! </h2>
-</div>    
+</div>
