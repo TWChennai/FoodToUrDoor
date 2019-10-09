@@ -16,13 +16,12 @@
   .links  {
     font-size: large;
     justify-self: right;
-    margin: 10px;   
+    margin: 0px;   
   }
 
   div.linksHolder{
       flex: 1;
       float: right;
-      margin: 60px;
       text-align: right;
   }
 
@@ -32,11 +31,38 @@
     top: -24px;
   }
 
-  a {
-    padding: 1.5em;
-    text-transform: uppercase;
-    font-size: .8em;
-    text-decoration: none;
-    color: white;
+a {
+  padding: 0.8em;
+  text-transform: uppercase;
+  font-size: .8em;
+  text-decoration: none;
+  color: white;
+}
+
+#menu {
+  font-size: large;
+  background: #1976d2;  
+  position: relative;
+  display: inline-block;
+  margin: 80px;
+}
+
+#list {
+  display: none;
+  background-color: #1976d2;
+  position: absolute;
+}
+
+table tr td{
+  border-bottom: 1px solid brown;
+}
+
+td{
+height: 30px;
+width: 980px;
+}
+
+#menu:hover #list {
+  display: block;
 }
 
