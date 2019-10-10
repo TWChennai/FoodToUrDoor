@@ -34,8 +34,20 @@ export class RegisterComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
+    aretermsAccepted() {
+       if ( localStorage.getItem('terms') === 'accepted' ) {
+           return true;
+       }
+       return false;
+
+    }
+
     onSubmit() {
         this.submitted = true;
+        if ( !this.aretermsAccepted()) {
+            return;
+        }
+
 
         // stop here if form is invalid
         if (this.registerForm.invalid) {
@@ -50,6 +62,7 @@ export class RegisterComponent implements OnInit {
         .then(res => {
             this.register = true;
             this.success = true;
+            localStorage.removeItem('terms');
           })
         .catch(err => { this.success = false; });
     }

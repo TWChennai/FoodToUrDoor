@@ -12,7 +12,7 @@
                     <div class="registerForm" *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
                         <div class="form-group">
                             <span >
-                                <span class="invalid-feedback"> Registration Failed! /n Email already exist!!</span>
+                                <span class="invalid-feedback"> Registration Failed! Check if <br> Email already exist!! (or) Terms and conditions not accepted!!</span>
                             </span>
                         </div>
                     </div>
@@ -99,7 +99,14 @@
                     </div>
                 </td>
             </tr>
-
+            <tr>
+                <td></td>
+                <td >
+                    <div>
+                    <a routerLink="/terms" target="_blank"> Please read and accept terms and conditions</a>
+                </div>
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td>
