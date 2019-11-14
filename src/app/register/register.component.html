@@ -1,120 +1,79 @@
-<div class="registerForm" *ngIf="submitted && success">
-    <h2> You are registered please Login!! </h2>
-    <a href="/login"> login </a>
-</div>
+<div class="w-50 p-3 container">
 
-<div class="signupform" *ngIf="!success">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <table>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="registerForm" *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
-                        <div class="form-group">
-                            <span >
-                                <span class="invalid-feedback"> Registration Failed! Check if <br> Email already exist!! (or) Terms and conditions not accepted!!</span>
-                            </span>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+    <div class="registerForm" *ngIf="submitted && success">
+        <h2> You are registered please Login!! </h2>
+        <a href="/login"> login </a>
+    </div>
 
-            <tr>
-                <td><label>First name :</label></td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" value='First Name' />
-                        <span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                            <span *ngIf="f.firstName.errors.required">First Name is required</span>
-                        </span>
-                    </div>
-                </td>       
-            </tr>
 
-            <tr>
-                <td><label>Last name :</label></td>
-                <td>    
-                    <div class="form-group">
-                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                        <span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                            <span *ngIf="f.lastName.errors.required">Last Name is required</span>
-                        </span>
-                    </div>
-                </td>
-            </tr>
+    <form class="text-center border p-5" *ngIf="!success" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-            <tr>
-                <td>
-                    <label>Email (Username) <span class='red'>*</span> :</label>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                        <span *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <span *ngIf="f.email.errors.required">Email is required</span>
-                            <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
-                        </span>
-                    </div>
-                </td>
-            </tr>
+        <p class="h4 mb-4">Sign up</p>
+        <div *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
+            <span class="text-danger"> 
+                Registration Failed! Check if <br> Email already exist!! (or) Terms and conditions not accepted!!
+            </span>
+        </div>
+    
+        <div class="form-row mb-4">
+            <div class="col">
+                <input type="text" placeholder="First name" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <span *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <span *ngIf="f.firstName.errors.required">First Name is required</span>
+                </span>
+            </div>
+            <div class="col">
+                <input type="text" placeholder="Last name" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <span *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <span *ngIf="f.lastName.errors.required">Last Name is required</span>
+                </span>
+            </div>
+        </div>
+    
+        <div class="mb-4">
+            <input type="text" placeholder="E-mail" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <span *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <span *ngIf="f.email.errors.required">Email is required</span>
+                <span *ngIf="f.email.errors.email">Email must be a valid email address</span>
+            </span>
+        </div>
+        <div class="mb-4">
+            <input type="text" placeholder="Mobile" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+            <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                <span *ngIf="f.mobileNumber.errors.required">Mobile Number is required</span>
+                <span *ngIf="f.mobileNumber.errors.maxlength">Mobile Number must be 10 characters</span>
+            </span>
+        </div>
 
-            <tr>
-                <td><label>Mobile number :</label></td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
-                        <span *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
-                            <span *ngIf="f.mobileNumber.errors.required">Mobile Number is required</span>
-                            <span *ngIf="f.mobileNumber.errors.maxlength">Mobile Number must be 10 characters</span>
-                        </span>
-                    </div>  
-                </td>
-            </tr>
+        <div class="mb-4">
+            <input type="password" formControlName="password" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted">
+                Password should contain atleast one of the following character -  !@#%&*
+            </small>
+            <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <span *ngIf="f.password.errors.required">Password is required</span>
+                <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
+            </span>
+        </div>
 
-            <tr>
-                <td>
-                    <label>Password <span class='red'>*</span> :</label>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                        <div>Password should contain atleast one of the following character -  !@#%&*</div>
-                        <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <span *ngIf="f.password.errors.required">Password is required</span>
-                            <span *ngIf="f.password.errors.minlength">Password must be at least 6 characters</span>
-                        </span>
-                    </div>
-                </td>
-            </tr>
+        <div class="mb-4">
+            <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <span *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <span *ngIf="f.confirmPassword.errors.required">Confirm Password is required</span>
+                <span *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</span>
+            </span>
+        </div>
+        <p>
+                <em>Accept </em> 
+                <a routerLink="/terms" target="_blank">terms of service</a> before clicking on Register!
+        </p>
 
-            <tr>
-                <td> <label>Confirm Password <span class='red'>*</span> :</label> </td>
-                <td>
-                    <div class="form-group">
-                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-                        <span *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                            <span *ngIf="f.confirmPassword.errors.required">Confirm Password is required</span>
-                            <span *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</span>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td >
-                    <div>
-                    <a routerLink="/terms" target="_blank"> Please read and accept terms and conditions</a>
-                </div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <div class="form-group">
-                        <button class="submit">Register</button>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <hr>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+            <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+        </div>
+    
+        <button class="btn btn-info my-4 btn-block" type="submit">Register</button>    
     </form>
 </div>

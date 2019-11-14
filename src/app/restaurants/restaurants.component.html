@@ -5,13 +5,15 @@
     </h2>
 </div>
 
-<div class="card-container">
-    <ng-container *ngIf="restaurants">
-        <ng-container  *ngFor="let restaurant of restaurants">
-            <a class="card" [attr.href]="'/restaurant/' + restaurant.hotelId">
-                <img src='assets/1.png' alt='image'>
-                <div>{{restaurant.name}} </div>
-            </a>
-        </ng-container>
+<div class="row" *ngIf="restaurants">
+    <ng-container *ngFor="let restaurant of restaurants">
+        <a [attr.href]="'/restaurant/' + restaurant.hotelId" class="card m-3" style="width: 25rem;">
+            <img src='assets/1.png' alt='image' class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{restaurant.name}}     
+                </h5>
+            </div>    
+        </a>
     </ng-container>
 </div>

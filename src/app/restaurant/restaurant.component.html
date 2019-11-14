@@ -1,33 +1,32 @@
 <div  *ngIf='isLoggedInAlready'>
     <div *ngIf='restaurant'>
-        <div class='title'>
-            <span> Select items from </span>
-            <span class="name">{{restaurant.name}}</span>
+        <div>
+            <h3>{{restaurant.name}}</h3>
         </div>
-            <div *ngIf="restaurant?.items">
-            <div *ngFor="let item of restaurant.items" class='item-list'>
-                <span class="item-list">
-                    <img class='item-img' src='assets/items.jpg' alt="items">
-                </span> 
-                <table class="item-list">
-                    <tr>
-                        <td class="item-details">
-                            <span>{{item.itemName}}</span>
-                        </td>
-                    </tr>    
-                    <tr>      
-                        <td class="item-details">
-                            <span>₹ </span>
-                            <span>{{item.price}}</span>
-                        </td>
-                        <td class="item-details">
-                                <button class="grab" (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> + </button>
+        <div class="row" *ngIf="restaurant?.items">
+            <div *ngFor="let item of restaurant.items">
+                <div class="card m-4" style="width: 18rem; height: 18rem;">
+                    <img src='assets/items.jpg' alt="items" style=" height: 14rem;">
+                    <table>
+                        <tr>
+                            <td>
+                                <span>{{item.itemName}}</span>
                             </td>
-                            <td class="item-details">
-                                <button class="grab" (click)="removeFromCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> - </button>
+                        </tr>    
+                        <tr>      
+                            <td>
+                                <span>₹ </span>
+                                <span>{{item.price}}</span>
                             </td>
-                    </tr>
-                </table>            
+                            <td>
+                                <button (click)="addToCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> + </button>
+                            </td>
+                            <td>
+                                <button (click)="removeFromCart(restaurant.hotelId, restaurant.name, item.id, item.itemName, item.price)"> - </button>
+                            </td>
+                        </tr>
+                    </table>                   
+                </div>
             </div>
         </div>
     </div>

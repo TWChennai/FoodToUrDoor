@@ -13,7 +13,7 @@ export class DataserviceService {
   backend: string;
 
   constructor(private httpClient: HttpClient) {
-    this.backend = 'http://192.168.0.105:8102';
+    this.backend = 'http://localhost:8102';
   }
 
   getRestaurants(): Observable<RestaurantModel[]> {
