@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
 import {Router} from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { getRandomInt } from '../_helpers/random';
 
 @Component({
   selector: 'app-contact',
@@ -16,9 +18,18 @@ export class RegisterComponent implements OnInit {
     success = false;
     register = false;
 
-    constructor(private formBuilder: FormBuilder, private dataService: DataserviceService, private router: Router) { }
+    constructor(private formBuilder: FormBuilder,
+        private dataService: DataserviceService,
+        private router: Router,
+        private spinner: NgxSpinnerService) { }
 
     ngOnInit() {
+
+        this.spinner.show();
+        setTimeout(() => {
+          this.spinner.hide();
+        }, getRandomInt());
+
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],

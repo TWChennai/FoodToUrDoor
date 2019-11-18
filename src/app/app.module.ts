@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { CartComponent } from './cart/cart.component';
 import { TermsComponent } from './terms/terms.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TermsComponent } from './terms/terms.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

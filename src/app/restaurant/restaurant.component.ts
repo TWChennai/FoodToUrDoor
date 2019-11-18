@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../dataservice.service';
 import { RestaurantModel } from '../models/RestaurantModel';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { getRandomInt } from '../_helpers/random';
 
 @Component({
   selector: 'app-restaurant',
@@ -15,11 +17,20 @@ export class RestaurantComponent implements OnInit {
   isLoggedInAlready: boolean;
   isAlertVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dataserviceService: DataserviceService, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private dataserviceService: DataserviceService,
+              private router: Router,
+              private spinner: NgxSpinnerService) {
     this.route.params.subscribe( params => this.restaurandId = params['id']);
   }
 
   ngOnInit() {
+
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, getRandomInt());
+
     this.dataserviceService.getRestaurantsMatching(this.restaurandId).subscribe(r => this.restaurant = r);
     this.isLoggedInAlready = this.isLoggedIn();
     if ( !this.isLoggedInAlready ) {

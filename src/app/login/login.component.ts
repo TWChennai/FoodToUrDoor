@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataserviceService } from '../dataservice.service';
 import {Router} from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { getRandomInt } from '../_helpers/random';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +16,18 @@ export class LoginComponent implements OnInit {
   submitted = false;
   success = false;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataserviceService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private dataService: DataserviceService,
+              private router: Router,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, getRandomInt());
+
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]

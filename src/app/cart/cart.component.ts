@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Ordermodel } from '../models/ordermodel';
 import { OrderItem } from '../models/orderitem';
+import { NgxSpinnerService } from "ngx-spinner";
+import { getRandomInt } from '../_helpers/random';
 
 @Component({
   selector: 'app-cart',
@@ -12,13 +14,19 @@ export class CartComponent implements OnInit {
   order: Ordermodel;
   // restaurant:1:test1;item:1:Dosa:23.2:1;
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { }
 
   getCartString() {
     return localStorage.getItem('cart-items');
   }
 
   ngOnInit() {
+
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, getRandomInt());
+
     if( this.getCartString() != null ) {
       const cart = this.getCartString().split(';');
       this.order = new Ordermodel();

@@ -1,10 +1,2 @@
-fileignoreconfig:
-- filename: FoodToUrDoor/src/environments/environment.prod.ts
-  checksum: cb7fd536bf77497a6301150765890105f9bf2e53630a0f71cfe17b15e4d33c1f
-  ignore_detectors: []
-- filename: FoodToUrDoor/src/environments/environment.ts
-  checksum: d43b12031efc179cf5008e82debe5f9b36ede987918872f0dbe558ccacd2af0f
-  ignore_detectors: []
-- filename: FoodToUrDoor/package-lock.json
-  checksum: 99f2afdd3343e9cc46f1618190797223bc0c1b1a366143a347b770dc0ff4665d
-  ignore_detectors: []
+scopeconfig:
+ - scope: node
