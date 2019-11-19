@@ -53,6 +53,12 @@ export class RegisterComponent implements OnInit {
 
     }
 
+    onFileChanged(event) {
+        const file = event.target.files[0]
+        document.getElementById("custom-file-label").innerHTML = file.name
+        console.log(file.name)
+      }
+
     onSubmit() {
         this.submitted = true;
         if ( !this.aretermsAccepted()) {

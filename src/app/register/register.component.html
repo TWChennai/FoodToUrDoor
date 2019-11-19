@@ -63,8 +63,14 @@
                 <span *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</span>
             </span>
         </div>
+
+        <div class="custom-file file-upload-wrapper mb-4">
+                <input type="file" class="custom-file-input" id="customFile" name="filename" (change)="onFileChanged($event)">
+                <label class="custom-file-label" id="custom-file-label" for="customFile">Choose file</label>
+        </div>
+
         <p>
-                <em>Accept </em> 
+                <em>Accept </em>    
                 <a routerLink="/terms" target="_blank">terms of service</a> before clicking on Register!
         </p>
 
