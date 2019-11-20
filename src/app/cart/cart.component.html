@@ -1,5 +1,5 @@
 <div class="container">
-    <div *ngIf="order">
+    <div *ngIf="order && !orderPlaced">
         <div>
             <h2>
                 You are ordering from <i>{{order.restaurantName}}</i>
@@ -42,12 +42,19 @@
                     <td class="hidden-xs text-center"><strong>Total {{order.totalValue}}</strong></td>
                 </tr>
                 <tr>
-                    <td><a routerLink="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                    <td class="hidden-xs"><a routerLink="/" class="btn btn-warning"> Continue Shopping </a></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="hidden-xs text-center"><a routerLink="/cart" (click)=placeOrder(order) class="btn btn-warning"> Checkout </a></td>
                 </tr>
             </tfoot>
         </table>
+    </div>
+    <div *ngIf="orderPlaced" class="text-center">
+        <img src='assets/Checkedout.gif' class="img-fluid" height="400px" width="550px" alt="order placed">
+        <h2>Order {{orderPlaced}} is placed!</h2>
+    </div>
+    <div *ngIf="!orderPlaced && !order" class="text-center">
+            <h2>No items in cart!</h2>
     </div>
 </div>

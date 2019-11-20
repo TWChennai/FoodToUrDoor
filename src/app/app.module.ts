@@ -13,6 +13,7 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { CartComponent } from './cart/cart.component';
 import { TermsComponent } from './terms/terms.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     RegisterComponent,
     RestaurantComponent,
     CartComponent,
-    TermsComponent
+    TermsComponent,
+    OrderhistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
 import {Router} from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { getRandomInt } from '../_helpers/random';
 
 @Component({

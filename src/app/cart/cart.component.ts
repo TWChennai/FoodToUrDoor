@@ -3,6 +3,7 @@ import { Ordermodel } from '../models/ordermodel';
 import { OrderItem } from '../models/orderitem';
 import { NgxSpinnerService } from "ngx-spinner";
 import { getRandomInt } from '../_helpers/random';
+import { DataserviceService } from '../dataservice.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,15 +14,17 @@ export class CartComponent implements OnInit {
 
   order: Ordermodel;
   // restaurant:1:test1;item:1:Dosa:23.2:1;
+  placedOrder: Ordermodel;
+  orderPlaced = null;
 
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService, private dataService: DataserviceService) { }
 
   getCartString() {
     return localStorage.getItem('cart-items');
   }
 
   ngOnInit() {
-
+    this.orderPlaced = null;
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
@@ -51,6 +54,18 @@ export class CartComponent implements OnInit {
       this.order.tax = '5';
       this.order.totalValue = String(subTotal + Number(this.order.tax) + Number(this.order.deliveryFee) - 1);
     }
+  }
+
+  placeOrder(order: Ordermodel) {
+    this.dataService.placeOrder(order).subscribe(
+      data => {
+          localStorage.removeItem('cart-items');
+          this.orderPlaced = data.orderId;
+      },
+      error => {
+        alert('order not placed!!');
+      }
+    );
   }
 
 }

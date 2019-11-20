@@ -4,6 +4,7 @@ import { catchError, map, filter } from 'rxjs/operators';
 import { RestaurantModel } from './models/RestaurantModel';
 import { Observable, throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { Ordermodel } from './models/ordermodel';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,6 @@ export class DataserviceService {
 
   getRestaurants(): Observable<RestaurantModel[]> {
     return this.httpClient.get<RestaurantModel[]>(this.backend + '/getHotels').pipe(
-      // tslint:disable-next-line: no-shadowed-variable
       map(data => data.map(d => new RestaurantModel().deserialize(d)),
       catchError(() => throwError('Restaurants are not found'))
       ));
@@ -33,8 +33,6 @@ export class DataserviceService {
       catchError(() => throwError('Restaurants are not found'))
       ));
   }
-
-
 
   signIn(username: string, password: string): Promise<Object> {
     const payload = {
@@ -62,6 +60,38 @@ export class DataserviceService {
         resolve(res);
     });
     });
+  }
+
+  placeOrder(order: Ordermodel): Observable<Ordermodel> {
+    const httpHeaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('token', this.getToken());
+
+    const options = {
+      headers: httpHeaders
+    };
+
+    return this.httpClient.post<Ordermodel>(this.backend + '/placeOrder', order, options);
+  }
+
+  getOrderHistory(): Observable<Ordermodel[]> {
+
+    const httpHeaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('token', this.getToken());
+
+    const options = {
+      headers: httpHeaders
+    };
+
+    return this.httpClient.get<Ordermodel[]>(this.backend + '/orderHistory', options).pipe(
+      map(data => data.map(d => new Ordermodel().deserialize(d)),
+      catchError(() => throwError('Orders are not found'))
+      ));
+  }
+
+  getToken() {
+    return sessionStorage.getItem('authToken');
   }
 
 }
