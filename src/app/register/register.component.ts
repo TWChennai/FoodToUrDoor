@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { DataserviceService } from '../dataservice.service';
 import {Router} from '@angular/router';
@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
     submitted = false;
     success = false;
     register = false;
+    image: File;
 
     constructor(private formBuilder: FormBuilder,
         private dataService: DataserviceService,
@@ -36,7 +37,8 @@ export class RegisterComponent implements OnInit {
             mobileNumber: ['', [Validators.required, Validators.maxLength(10)]],
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            customFile: ['', Validators.required]
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
@@ -57,6 +59,7 @@ export class RegisterComponent implements OnInit {
         const file = event.target.files[0]
         document.getElementById("custom-file-label").innerHTML = file.name
         console.log(file.name)
+        this.image=file
       }
 
     onSubmit() {
@@ -64,7 +67,6 @@ export class RegisterComponent implements OnInit {
         if ( !this.aretermsAccepted()) {
             return;
         }
-
 
         // stop here if form is invalid
         if (this.registerForm.invalid) {
@@ -75,7 +77,8 @@ export class RegisterComponent implements OnInit {
         const email = this.f.email.value;
         const mobileNumber = this.f.mobileNumber.value;
         const password = this.f.password.value;
-        this.dataService.signUp(firstname, lastname, email, password, mobileNumber )
+    
+        this.dataService.signUp(firstname, lastname, email, password, mobileNumber, this.image)
         .then(res => {
             this.register = true;
             this.success = true;

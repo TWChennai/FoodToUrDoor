@@ -47,7 +47,7 @@ export class DataserviceService {
     });
   }
 
-  signUp(firstname: string, lastname: string, email: string, password: string, phone: string): Promise<Object> {
+  signUp(firstname: string, lastname: string, email: string, password: string, phone: string, image: File): Promise<Object> {
     const payload = {
       'firstname': firstname,
       'lastname': lastname,
@@ -55,8 +55,14 @@ export class DataserviceService {
       'password': password,
       'phone': phone
     };
+
+    var formData = new FormData();
+    formData.append("payload", JSON.stringify(payload))
+    formData.append("image", image)
+
+
     return new Promise((resolve, reject) => {
-      this.httpClient.post(this.backend + '/createUser', payload).subscribe(res => {
+      this.httpClient.post(this.backend + '/createUser', formData).subscribe(res => {
         resolve(res);
     });
     });

@@ -6,7 +6,7 @@
     </div>
 
 
-    <form class="text-center border p-5" *ngIf="!success" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form class="border p-5" *ngIf="!success" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <p class="h4 mb-4">Sign up</p>
         <div *ngIf="submitted && !success && !f.confirmPassword.errors && !f.confirmPassword.errors && !f.mobileNumber.errors && !f.email.errors && !f.lastName.errors && !f.firstName.errors">
@@ -29,7 +29,7 @@
                 </span>
             </div>
         </div>
-    
+
         <div class="mb-4">
             <input type="text" placeholder="E-mail" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
             <span *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -64,18 +64,21 @@
             </span>
         </div>
 
-        <div class="custom-file file-upload-wrapper mb-4">
-                <input type="file" class="custom-file-input" id="customFile" name="filename" (change)="onFileChanged($event)">
-                <label class="custom-file-label" id="custom-file-label" for="customFile">Choose file</label>
+        <div class="custom-file mb-4">
+            <input type="file" class="custom-file-input" formControlName="customFile" (change)="onFileChanged($event)" [ngClass]="{ 'is-invalid': submitted && f.customFile.errors }">
+            <label class="custom-file-label" for="customFile" id="custom-file-label">Choose File</label>
+            <span *ngIf="submitted && f.customFile.errors" class="invalid-feedback">
+                <span *ngIf="f.customFile.errors.required">Image is required</span>
+            </span>
         </div>
 
-        <p>
+        <p class="text-center">
                 <em>Accept </em>    
                 <a routerLink="/terms" target="_blank">terms of service</a> before clicking on Register!
         </p>
 
         <hr>
-        <div class="custom-control custom-checkbox">
+        <div class="custom-control custom-checkbox text-center">
             <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
             <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
         </div>
