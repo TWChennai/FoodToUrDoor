@@ -11,6 +11,7 @@ export class NavComponent implements OnInit {
   title = 'FoodToUrDoor';
   token: boolean;
   username: String;
+  imagePath: String;
 
   constructor(private router: Router) {
     router.events.subscribe(event => {
@@ -23,6 +24,8 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.token = this.getToken();
     this.username = this.getUsername();
+    this.imagePath = "http://localhost:8102/getImage?username=" + this.getEmail();
+    console.log("imagepath = " + this.imagePath);
   }
 
   getToken() {
@@ -34,6 +37,10 @@ export class NavComponent implements OnInit {
 
   getUsername() {
     return sessionStorage.getItem('username');
+  }
+
+  getEmail() {
+    return sessionStorage.getItem('email');
   }
 
   logout() {

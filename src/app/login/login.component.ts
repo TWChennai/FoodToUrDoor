@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
           .then(res => {
             sessionStorage.setItem('authToken', res['token']);
             sessionStorage.setItem('username', res['username']);
+            sessionStorage.setItem('email', res['email']);
             this.router.navigate(['/']);
             this.success = true;
           })
