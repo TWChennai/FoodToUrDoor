@@ -24,7 +24,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.token = this.getToken();
     this.username = this.getUsername();
-    this.imagePath = "http://localhost:8102/getImage?username=" + this.getEmail();
+    this.imagePath = "https://stormy-savannah-89535.herokuapp.com/getImage?username=" + this.getEmail();
     console.log("imagepath = " + this.imagePath);
   }
 

@@ -14,7 +14,7 @@ export class DataserviceService {
   backend: string;
 
   constructor(private httpClient: HttpClient) {
-    this.backend = 'http://localhost:8102';
+    this.backend = 'https://stormy-savannah-89535.herokuapp.com';
   }
 
   getRestaurants(): Observable<RestaurantModel[]> {
