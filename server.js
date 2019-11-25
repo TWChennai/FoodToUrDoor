@@ -9,8 +9,11 @@ const app = express();
 app.use(express.static(__dirname + '/dist/FoodToUrDoor'));
 
 app.get('/*', function(req,res) {
-    
-res.sendFile(path.join(__dirname+'/dist/FoodToUrDoor/index.html'));
+   res.header("Access-Control-Allow-Origin", '*');
+   res.header("Access-Control-Allow-Credentials", true);
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+   res.sendFile(path.join(__dirname+'/dist/FoodToUrDoor/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
