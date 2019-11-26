@@ -7,7 +7,7 @@
 
 <div class="row" *ngIf="restaurants">
     <ng-container *ngFor="let restaurant of restaurants">
-        <a [attr.href]="'/restaurant/' + restaurant.hotelId" class="card m-3" style="width: 25rem;">
+        <a routerLink="/restaurant/{{restaurant.hotelId}}" class="card m-3" style="width: 25rem;">
             <img src='assets/1.png' alt='image' class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">
