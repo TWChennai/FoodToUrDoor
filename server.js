@@ -7,10 +7,10 @@ const app = express();
 app.use(cors())
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/FoodToUrDoor'));
+app.use(express.static('./dist/FoodToUrDoor'));
 
 app.get('/*', function(req, res, next) {
-res.sendFile(path.join(__dirname+'/dist/FoodToUrDoor/index.html'));
+res.sendFile(path.join(__dirname,'/dist/FoodToUrDoor/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
