@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
     if (this.loginForm.invalid) {
         return;
     }
@@ -50,9 +49,15 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('email', res['email']);
             this.router.navigate(['/']);
             this.success = true;
+            this.submitted = true;
           })
           .catch( error =>  {
             this.success = false;
+            this.submitted = true;
+          })
+          .finally(() => {
+            this.success = false;
+            this.submitted = true;
           });
     }
 }

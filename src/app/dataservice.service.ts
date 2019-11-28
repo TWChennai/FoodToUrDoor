@@ -41,9 +41,11 @@ export class DataserviceService {
     };
 
     return new Promise((resolve, reject) => {
-      this.httpClient.post(this.backend + '/login', payload).subscribe(res => {
-      resolve(res);
-    });
+      this.httpClient.post(this.backend + '/login', payload)
+      .subscribe(
+        res => { resolve(res); },
+        err => { reject(new Error('login failed')); }
+        );
     });
   }
 
@@ -62,9 +64,11 @@ export class DataserviceService {
 
 
     return new Promise((resolve, reject) => {
-      this.httpClient.post(this.backend + '/createUser', formData).subscribe(res => {
-        resolve(res);
-    });
+      this.httpClient.post(this.backend + '/createUser', formData)
+      .subscribe(
+        res => { resolve(res); },
+        err => { reject(new Error('registration failed')); }
+        );
     });
   }
 

@@ -63,11 +63,9 @@ export class RegisterComponent implements OnInit {
       }
 
     onSubmit() {
-        this.submitted = true;
         if ( !this.aretermsAccepted()) {
             return;
         }
-
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
@@ -77,13 +75,23 @@ export class RegisterComponent implements OnInit {
         const email = this.f.email.value;
         const mobileNumber = this.f.mobileNumber.value;
         const password = this.f.password.value;
-    
+
         this.dataService.signUp(firstname, lastname, email, password, mobileNumber, this.image)
         .then(res => {
+            this.submitted = true;
             this.register = true;
             this.success = true;
             localStorage.removeItem('terms');
           })
-        .catch(err => { this.success = false; });
+        .catch(err => {
+            this.submitted = true;
+            this.success = false;
+        })
+        .finally(() => {
+            if (!this.success) {
+            this.submitted = true;
+            this.success = false;
+            }
+          });
     }
 }
